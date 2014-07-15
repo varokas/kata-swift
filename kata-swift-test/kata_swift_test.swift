@@ -1,11 +1,3 @@
-//
-//  kata_swift_test.swift
-//  kata-swift-test
-//
-//  Created by Panusuwan, Varokas (DS) on 7/15/14.
-//
-//
-
 import Cocoa
 import XCTest
 

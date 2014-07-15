@@ -1,36 +1,17 @@
-//
-//  kata_tennis_test.swift
-//  kata-swift
-//
-//  Created by Panusuwan, Varokas (DS) on 7/15/14.
-//
-//
-
-import Cocoa
 import XCTest
 
+class Tennis {
+    func getScore() -> String {
+        return "Love - Love"
+    }
+}
+
 class kata_tennis_test: XCTestCase {
-
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    let tennis = Tennis()
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
+    func test_getScoreInitiallyIs_LoveLove() {
+        XCTAssertEqual(tennis.getScore(), "Love - Love")
     }
 
 }

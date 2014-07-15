@@ -6,20 +6,92 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		15BC4D6E1975C801004D8575 /* kata_swift_test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC4D6D1975C801004D8575 /* kata_swift_test.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		15BC4D681975C801004D8575 /* kata-swift-test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "kata-swift-test.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		15BC4D6C1975C801004D8575 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15BC4D6D1975C801004D8575 /* kata_swift_test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kata_swift_test.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		15BC4D651975C801004D8575 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
 /* Begin PBXGroup section */
 		15BC4D5C1975C79F004D8575 = {
 			isa = PBXGroup;
 			children = (
+				15BC4D6A1975C801004D8575 /* kata-swift-test */,
+				15BC4D691975C801004D8575 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
+		15BC4D691975C801004D8575 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				15BC4D681975C801004D8575 /* kata-swift-test.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		15BC4D6A1975C801004D8575 /* kata-swift-test */ = {
+			isa = PBXGroup;
+			children = (
+				15BC4D6D1975C801004D8575 /* kata_swift_test.swift */,
+				15BC4D6B1975C801004D8575 /* Supporting Files */,
+			);
+			path = "kata-swift-test";
+			sourceTree = "<group>";
+		};
+		15BC4D6B1975C801004D8575 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				15BC4D6C1975C801004D8575 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		15BC4D671975C801004D8575 /* kata-swift-test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15BC4D6F1975C801004D8575 /* Build configuration list for PBXNativeTarget "kata-swift-test" */;
+			buildPhases = (
+				15BC4D641975C801004D8575 /* Sources */,
+				15BC4D651975C801004D8575 /* Frameworks */,
+				15BC4D661975C801004D8575 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "kata-swift-test";
+			productName = "kata-swift-test";
+			productReference = 15BC4D681975C801004D8575 /* kata-swift-test.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		15BC4D5D1975C79F004D8575 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0600;
+				TargetAttributes = {
+					15BC4D671975C801004D8575 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+				};
 			};
 			buildConfigurationList = 15BC4D601975C79F004D8575 /* Build configuration list for PBXProject "kata-swift" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -29,12 +101,35 @@
 				en,
 			);
 			mainGroup = 15BC4D5C1975C79F004D8575;
+			productRefGroup = 15BC4D691975C801004D8575 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				15BC4D671975C801004D8575 /* kata-swift-test */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		15BC4D661975C801004D8575 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		15BC4D641975C801004D8575 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15BC4D6E1975C801004D8575 /* kata_swift_test.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
 		15BC4D611975C79F004D8575 /* Debug */ = {
@@ -49,6 +144,97 @@
 			};
 			name = Release;
 		};
+		15BC4D701975C801004D8575 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "kata-swift-test/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		15BC4D711975C801004D8575 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "kata-swift-test/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -60,6 +246,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		15BC4D6F1975C801004D8575 /* Build configuration list for PBXNativeTarget "kata-swift-test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15BC4D701975C801004D8575 /* Debug */,
+				15BC4D711975C801004D8575 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
