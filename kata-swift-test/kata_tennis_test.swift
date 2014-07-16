@@ -7,16 +7,41 @@ class Tennis {
     var scoreB:Int = 0
     
     func aWins() {
-        scoreA++
+        if(_isAdvantageB()) {
+            _setScoreToDeuce()
+        } else {
+            scoreA++
+        }
     }
     
     func bWins() {
-        scoreB++
+        if(_isAdvantageA()) {
+            _setScoreToDeuce()
+        } else {
+            scoreB++
+        }
+    }
+    
+    func _isAdvantageA() -> Bool {
+        return scoreA == 4 && scoreB == 3
+    }
+    
+    func _isAdvantageB() -> Bool {
+        return scoreA == 3 && scoreB == 4
+    }
+    
+    func _setScoreToDeuce() {
+        scoreA = 3
+        scoreB = 3
     }
     
     func getScore() -> String {
         if(scoreA == 3 && scoreB == 3) {
             return "Deuce"
+        } else if(_isAdvantageA()) {
+            return "Advantage A"
+        } else if(scoreA == 3 && scoreB == 4) {
+            return "Advantage B"
         }
         
         return "\(scoreWords[scoreA]) - \(scoreWords[scoreB])"
@@ -31,48 +56,78 @@ class kata_tennis_test: XCTestCase {
     }
     
     func test_getScore_afterAWinsIs_FifteenLove() {
-        letAWins(1)
+        _letAWins(1)
         XCTAssertEqual(tennis.getScore(), "Fifteen - Love")
     }
     
     func test_getScore_afterAWins2TimesIs_ThirtyLove() {
-        letAWins(2)
+        _letAWins(2)
         XCTAssertEqual(tennis.getScore(), "Thirty - Love")
     }
     
     func test_getScore_afterAWins3TimesIs_FortyLove() {
-        letAWins(3)
+        _letAWins(3)
         XCTAssertEqual(tennis.getScore(), "Forty - Love")
     }
     
     func test_getScore_afterBWinsIs_FifteenLove() {
-        letBWins(1)
+        _letBWins(1)
         XCTAssertEqual(tennis.getScore(), "Love - Fifteen")
     }
     
     func test_getScore_afterBWins2TimesIs_ThirtyLove() {
-        letBWins(2)
+        _letBWins(2)
         XCTAssertEqual(tennis.getScore(), "Love - Thirty")
     }
     
     func test_getScore_afterBWins3TimesIs_FortyLove() {
-        letBWins(3)
+        _letBWins(3)
         XCTAssertEqual(tennis.getScore(), "Love - Forty")
     }
     
     func test_getScore_afterBothWins3Times_Deuce() {
-        letAWins(3)
-        letBWins(3)
+        _letAWins(3)
+        _letBWins(3)
         XCTAssertEqual(tennis.getScore(), "Deuce")
     }
     
-    func letAWins(times: Int) {
+    func test_getScore_aWinsAfterDeuce_AdvantageA() {
+        _letAWins(3)
+        _letBWins(3)
+        _letAWins(1)
+        XCTAssertEqual(tennis.getScore(), "Advantage A")
+    }
+    
+    func test_getScore_bWinsAfterDeuceIs_AdvantageB() {
+        _letAWins(3)
+        _letBWins(3)
+        _letBWins(1)
+        XCTAssertEqual(tennis.getScore(), "Advantage B")
+    }
+    
+    func test_getScore_aLooseAdvantage_backtoDeuce() {
+        _letAWins(3)
+        _letBWins(3)
+        _letAWins(1)
+        _letBWins(1)
+        XCTAssertEqual(tennis.getScore(), "Deuce")
+    }
+    
+    func test_getScore_bLooseAdvantage_backtoDeuce() {
+        _letAWins(3)
+        _letBWins(3)
+        _letBWins(1)
+        _letAWins(1)
+        XCTAssertEqual(tennis.getScore(), "Deuce")
+    }
+    
+    func _letAWins(times: Int) {
         for i in 1...times {
             tennis.aWins()
         }
     }
     
-    func letBWins(times: Int) {
+    func _letBWins(times: Int) {
         for i in 1...times {
             tennis.bWins()
         }
