@@ -15,6 +15,10 @@ class Tennis {
     }
     
     func getScore() -> String {
+        if(scoreA == 3 && scoreB == 3) {
+            return "Deuce"
+        }
+        
         return "\(scoreWords[scoreA]) - \(scoreWords[scoreB])"
     }
 }
@@ -54,6 +58,12 @@ class kata_tennis_test: XCTestCase {
     func test_getScore_afterBWins3TimesIs_FortyLove() {
         letBWins(3)
         XCTAssertEqual(tennis.getScore(), "Love - Forty")
+    }
+    
+    func test_getScore_afterBothWins3Times_Deuce() {
+        letAWins(3)
+        letBWins(3)
+        XCTAssertEqual(tennis.getScore(), "Deuce")
     }
     
     func letAWins(times: Int) {
