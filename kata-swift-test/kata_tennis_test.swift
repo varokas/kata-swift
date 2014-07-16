@@ -1,58 +1,105 @@
 import XCTest
 
-class Tennis {
+protocol ScoreState {
+    func aWins(game: Tennis)
+    func bWins(game: Tennis)
+    
+    func getScore() -> String
+}
+
+class NormalScoreState : ScoreState {
     let scoreWords = [0: "Love", 1: "Fifteen", 2: "Thirty", 3: "Forty"]
     
-    var scoreA:Int = 0
-    var scoreB:Int = 0
+    var score:(a: Int, b: Int) = (0, 0)
     
-    func aWins() {
-        if(_isAdvantageB()) {
-            _setScoreToDeuce()
-        } else {
-            scoreA++
+    func aWins(game: Tennis) {
+        score.a++
+        
+        if(_isDeuce()) {
+            game.setScoreState(DeuceScoreState())
+        } else if(score.a == 4) {
+            game.setScoreState(WinScoreState(player: "A"))
         }
     }
     
-    func bWins() {
-        if(_isAdvantageA()) {
-            _setScoreToDeuce()
-        } else {
-            scoreB++
+    func bWins(game: Tennis) {
+        score.b++
+        
+        if(_isDeuce()) {
+            game.setScoreState(DeuceScoreState())
+        } else if(score.b == 4) {
+            game.setScoreState(WinScoreState(player: "B"))
         }
     }
     
     func _isDeuce() -> Bool {
-        return scoreA == 3 && scoreB == 3
-    }
-    
-    func _isAdvantageA() -> Bool {
-        return scoreA == 4 && scoreB == 3
-    }
-    
-    func _isAdvantageB() -> Bool {
-        return scoreA == 3 && scoreB == 4
-    }
-    
-    func _setScoreToDeuce() {
-        scoreA = 3
-        scoreB = 3
+        return score.a == 3 && score.b == 3
     }
     
     func getScore() -> String {
-        if(_isDeuce()) {
-            return "Deuce"
-        } else if(_isAdvantageA()) {
-            return "Advantage A"
-        } else if(_isAdvantageB()) {
-            return "Advantage B"
-        } else if(scoreA == 5 || (scoreA == 4 && scoreB < 3)) {
-            return "A Wins"
-        } else if(scoreB == 5 || (scoreB == 4 && scoreA < 3)) {
-            return "B Wins"
-        }
-        
-        return "\(scoreWords[scoreA]) - \(scoreWords[scoreB])"
+        return "\(scoreWords[score.a]) - \(scoreWords[score.b])"
+    }
+}
+
+class DeuceScoreState : ScoreState {
+    func aWins(game: Tennis) { game.setScoreState(AdvantageAScoreState()) }
+    func bWins(game: Tennis) { game.setScoreState(AdvantageBScoreState()) }
+    
+    func getScore() -> String {
+        return "Deuce"
+    }
+}
+
+class AdvantageAScoreState : ScoreState {
+    func aWins(game: Tennis) { game.setScoreState(WinScoreState(player: "A")) }
+    func bWins(game: Tennis) { game.setScoreState(DeuceScoreState()) }
+    
+    func getScore() -> String {
+        return "Advantage A"
+    }
+}
+
+class AdvantageBScoreState : ScoreState {
+    func aWins(game: Tennis) { game.setScoreState(DeuceScoreState()) }
+    func bWins(game: Tennis) { game.setScoreState(WinScoreState(player: "B")) }
+    
+    func getScore() -> String {
+        return "Advantage B"
+    }
+}
+
+class WinScoreState: ScoreState {
+    var player: String
+    
+    init(player:String) { self.player = player }
+    
+    func aWins(game: Tennis) {}
+    func bWins(game: Tennis) {}
+    
+    func getScore() -> String {
+        return "\(player) Wins"
+    }
+}
+
+
+
+class Tennis {
+    var scoreState:ScoreState = NormalScoreState()
+    
+    func aWins() {
+        scoreState.aWins(self)
+    }
+    
+    func bWins() {
+        scoreState.bWins(self)
+    }
+
+    func getScore() -> String {
+        return scoreState.getScore()
+    }
+    
+    func setScoreState(_scoreState: ScoreState) {
+        scoreState = _scoreState
     }
 }
 
