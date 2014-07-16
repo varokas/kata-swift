@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		15BC4D6E1975C801004D8575 /* kata_swift_test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC4D6D1975C801004D8575 /* kata_swift_test.swift */; };
+		15BC4D731975C82D004D8575 /* kata_tennis_test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC4D721975C82D004D8575 /* kata_tennis_test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		15BC4D681975C801004D8575 /* kata-swift-test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "kata-swift-test.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BC4D6C1975C801004D8575 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15BC4D6D1975C801004D8575 /* kata_swift_test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kata_swift_test.swift; sourceTree = "<group>"; };
+		15BC4D721975C82D004D8575 /* kata_tennis_test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = kata_tennis_test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +50,7 @@
 			children = (
 				15BC4D6D1975C801004D8575 /* kata_swift_test.swift */,
 				15BC4D6B1975C801004D8575 /* Supporting Files */,
+				15BC4D721975C82D004D8575 /* kata_tennis_test.swift */,
 			);
 			path = "kata-swift-test";
 			sourceTree = "<group>";
@@ -126,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15BC4D6E1975C801004D8575 /* kata_swift_test.swift in Sources */,
+				15BC4D731975C82D004D8575 /* kata_tennis_test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
