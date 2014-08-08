@@ -1,97 +1,88 @@
 import XCTest
 
+enum Player : String {
+    case A = "A"
+    case B = "B"
+}
+
 protocol ScoreState {
-    func aWins(game: Tennis)
-    func bWins(game: Tennis)
-    
+    func pointFor(player: Player, game: Tennis)
     func getScore() -> String
 }
 
 class NormalScoreState : ScoreState {
     let scoreWords = [0: "Love", 1: "Fifteen", 2: "Thirty", 3: "Forty"]
     
-    var score:(a: Int, b: Int) = (0, 0)
+    var score = [Player.A : 0, Player.B : 0]
     
-    func aWins(game: Tennis) {
-        score.a++
+    func pointFor(player: Player, game: Tennis) {
+        score[player] = score[player]! + 1
         
-        if(_isDeuce()) {
+        if _isDeuce() {
             game.setScoreState(DeuceScoreState())
-        } else if(score.a == 4) {
-            game.setScoreState(WinScoreState(player: "A"))
-        }
-    }
-    
-    func bWins(game: Tennis) {
-        score.b++
-        
-        if(_isDeuce()) {
-            game.setScoreState(DeuceScoreState())
-        } else if(score.b == 4) {
-            game.setScoreState(WinScoreState(player: "B"))
+        } else if (score[Player.A] == 4) { //No getValues(...) for enum...
+            game.setScoreState(WinScoreState(player: Player.A))
+        } else if (score[Player.B] == 4) {
+            game.setScoreState(WinScoreState(player: Player.B))
         }
     }
     
     func _isDeuce() -> Bool {
-        return score.a == 3 && score.b == 3
+        return score[Player.A] == 3 && score[Player.B] == 3
     }
     
     func getScore() -> String {
-        return "\(scoreWords[score.a]) - \(scoreWords[score.b])"
+        return "\(scoreWords[score[Player.A]!]) - \(scoreWords[score[Player.B]!])"
     }
 }
 
 class DeuceScoreState : ScoreState {
-    func aWins(game: Tennis) { game.setScoreState(AdvantageAScoreState()) }
-    func bWins(game: Tennis) { game.setScoreState(AdvantageBScoreState()) }
+    func pointFor(player: Player, game: Tennis) { game.setScoreState(AdvantageScoreState(player: player)) }
     
     func getScore() -> String {
         return "Deuce"
     }
 }
 
-class AdvantageAScoreState : ScoreState {
-    func aWins(game: Tennis) { game.setScoreState(WinScoreState(player: "A")) }
-    func bWins(game: Tennis) { game.setScoreState(DeuceScoreState()) }
+class AdvantageScoreState : ScoreState {
+    var playerOnAdvantage: Player
     
-    func getScore() -> String {
-        return "Advantage A"
+    init(player:Player) { self.playerOnAdvantage = player; }
+    
+    func pointFor(player: Player, game: Tennis) {
+        if player == playerOnAdvantage {
+           game.setScoreState(WinScoreState(player: player))
+        } else {
+           game.setScoreState(DeuceScoreState())
+        }
     }
-}
-
-class AdvantageBScoreState : ScoreState {
-    func aWins(game: Tennis) { game.setScoreState(DeuceScoreState()) }
-    func bWins(game: Tennis) { game.setScoreState(WinScoreState(player: "B")) }
     
     func getScore() -> String {
-        return "Advantage B"
+        return "Advantage " + playerOnAdvantage.toRaw()
     }
 }
 
 class WinScoreState: ScoreState {
-    var player: String
+    var player: Player
     
-    init(player:String) { self.player = player }
+    init(player:Player) { self.player = player; }
     
-    func aWins(game: Tennis) {}
-    func bWins(game: Tennis) {}
+    func pointFor(player: Player, game: Tennis) {}
     
     func getScore() -> String {
-        return "\(player) Wins"
+        return "\(player.toRaw()) Wins"
     }
 }
-
-
 
 class Tennis {
     var scoreState:ScoreState = NormalScoreState()
     
     func aWins() {
-        scoreState.aWins(self)
+        scoreState.pointFor(Player.A, game: self)
     }
     
     func bWins() {
-        scoreState.bWins(self)
+        scoreState.pointFor(Player.B, game: self)
     }
 
     func getScore() -> String {
