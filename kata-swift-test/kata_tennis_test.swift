@@ -20,11 +20,15 @@ class NormalScoreState : ScoreState {
         
         if _isDeuce() {
             game.setScoreState(DeuceScoreState())
-        } else if (score[Player.A] == 4) { //No getValues(...) for enum...
+        } else if (_wins(Player.A)) { //No getValues(...) for enum...
             game.setScoreState(WinScoreState(player: Player.A))
-        } else if (score[Player.B] == 4) {
+        } else if (_wins(Player.B)) {
             game.setScoreState(WinScoreState(player: Player.B))
         }
+    }
+    
+    func _wins(player: Player) -> Bool {
+        return score[player] == 4
     }
     
     func _isDeuce() -> Bool {
